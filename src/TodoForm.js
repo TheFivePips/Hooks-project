@@ -7,13 +7,13 @@ import useInputState from './hooks/useInputState';
 const TodoForm = () => {
     const [value, handleChange, reset] = useInputState('')
 
-    const {addtodo} = useContext(TodosContext)
+    const {dispatch} = useContext(TodosContext)
     
     return (
       <Paper style={{margin: "1rem 0", padding: "1rem 0"}}>
         <form onSubmit={(e) => {
             e.preventDefault()
-            addtodo(value)
+            dispatch({type: "ADD", task: value})
             reset()
         }}
         style={{
