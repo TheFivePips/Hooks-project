@@ -1,8 +1,10 @@
-import { useState } from "react";
+
 import { v4 as uuidv4 } from "uuid";
+import { useLocalStoreageState } from "./useLocalStoreageStae";
 
 export default function useTodoState(initialTodos) {
-    const [todos, setTodos] = useState(initialTodos);
+
+    const [todos, setTodos] = useLocalStoreageState("todos", initialTodos);
 
     const addtodo = (newTodoText) => {
     setTodos([...todos, { id: uuidv4(), task: newTodoText, completed: false }]);
