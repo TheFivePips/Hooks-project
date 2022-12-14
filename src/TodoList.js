@@ -1,25 +1,31 @@
 import React from 'react';
 import { Paper, List} from '@mui/material';
 import Todo from './Todo';
-const TodoList = ({todos, removetodo, toggleTodo}) => {
+import Divider from "@mui/material/Divider";
+const TodoList = ({todos, removetodo, toggleTodo, editTodo}) => {
     
+    if(todos.length)
     return (
       <Paper>
         <List>
-            {todos.map((todo) => (
+            {todos.map((todo,i) => (
+              <>
                 <Todo
-                    key={todo.id} 
-                    task={todo.task} 
-                    completed={todo.completed}
-                    id={todo.id} 
-                    removetodo={removetodo}
-                    toggleTodo={toggleTodo}
+                  task={todo.task} 
+                  completed={todo.completed}
+                  id={todo.id} 
+                  removetodo={removetodo}
+                  toggleTodo={toggleTodo}
+                  editTodo={editTodo}
                 />
-                ))}
-            
-        </List>
-      </Paper>
-    );
+                {i < todos.length -1 && <Divider />}
+              </>
+                
+            ))}
+      </List>
+    </Paper>
+  );
+  return null
 }
 
 export default TodoList;

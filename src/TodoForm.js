@@ -10,8 +10,20 @@ const TodoForm = ({addtodo}) => {
             e.preventDefault()
             addtodo(value)
             reset()
+        }}
+        style={{
+          display: 'flex', justifyContent: 'center'
         }}>
-          <TextField value={value} onChange={handleChange} margin='normal' label='Add New Todo' fullWidth />
+          <TextField
+            value={value}
+            onChange={handleChange} 
+            label='Add New Todo'
+            style={{
+              margin: '0 1rem',
+              width: '90%',
+              padding: '0',
+            }}
+          />
         </form>
       </Paper>
     );
