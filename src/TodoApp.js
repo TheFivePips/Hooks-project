@@ -1,19 +1,11 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import { Typography, Paper, AppBar,Toolbar, Grid } from '@mui/material';
 import TodoList from './TodoList';
 import TodoForm from './TodoForm';
-import useTodoState from './hooks/useTodoState';
+
+import { TodosProvider } from './contexts/todos.context';
 
 const TodoApp = () => {
-    const initialTodos = JSON.parse(window.localStorage.getItem('todos') || "[]")
-  
-    const {addtodo, todos, removetodo, toggleTodo, editTodo} = useTodoState(initialTodos)
-    useEffect(() => {
-      window.localStorage.setItem("todos", JSON.stringify(todos))
-    },[todos])
-
-    
-
     return (
       <Paper
         style={{
@@ -29,15 +21,12 @@ const TodoApp = () => {
             <Typography color="inherit">TODOS WITH HOOKS</Typography>
           </Toolbar>
         </AppBar>
-        <Grid container justifyContent='center' style={{marginTop: '1rem'}}>
+        <Grid container justifyContent="center" style={{ marginTop: "1rem" }}>
           <Grid item xs={11} md={8} lg={4}>
-            <TodoForm addtodo={addtodo} />
-            <TodoList 
-            todos={todos} 
-            removetodo={removetodo} 
-            toggleTodo={toggleTodo}
-            editTodo={editTodo}
-            />
+            <TodosProvider>
+              <TodoForm />
+              <TodoList/>
+            </TodosProvider>
           </Grid>
         </Grid>
       </Paper>
