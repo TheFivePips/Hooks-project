@@ -7,12 +7,12 @@ const EditTodoForm = ({id, task, toggleEditForm}) => {
 
 
   const [value, handleChange, reset] = useInputState(task)
-  const {editTodo} = useContext(TodosContext)
+  const {dispatch} = useContext(TodosContext)
 
   return (
     <form onSubmit={(e) => {
       e.preventDefault()
-      editTodo(id, value)
+      dispatch({type: "EDIT", id: id, newTask: value})
       reset()
       toggleEditForm()
     }}
