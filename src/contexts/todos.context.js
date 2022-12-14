@@ -1,7 +1,8 @@
 
 // toods and all methods that interact with todods
-import React, { createContext, useReducer } from "react";
+import React, { createContext } from "react";
 import reducer from "../reducers/todo.reducer";
+import { useLocalStoreageReducer } from "../hooks/useLocalStorageReducer";
 
 const defaultTodos = [
   { id: 1, task: "mow the lawn", completed: false },
@@ -13,8 +14,7 @@ export const DispatchContext = createContext()
 
 export function TodosProvider(props){
 
-  // const TodoStuff = useTodoState(defaultTodos)
-  const [todos, dispatch] = useReducer(reducer, defaultTodos)
+  const [todos, dispatch] = useLocalStoreageReducer('todos', defaultTodos, reducer)
 
   return (
     <TodosContext.Provider value={todos}>

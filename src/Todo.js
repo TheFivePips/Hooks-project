@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, memo} from 'react';
 import { ListItemText, ListItem, Checkbox, IconButton } from '@mui/material';
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
@@ -38,4 +38,4 @@ const Todo = ({task, completed, id}) => {
     
 }
 
-export default Todo;
+export default memo(Todo);
